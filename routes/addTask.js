@@ -17,19 +17,10 @@ router.post('/data', ((req, res) => {
         let updated = req.body.updated;
         let description = req.body.description;
 
-
-        console.log(taskHeader)
-        console.log(dateStart)
-        console.log(dateEnd)
-        console.log(priority)
-        console.log(status)
-        console.log(updated)
-        console.log(description)
-
         if (!(0 < taskHeader.length < 51 || 0 < description < 1201)) {
             console.log('shit header')
             res.json({result: 'Некорректные данные'})
-        } else if (dateStart.length !== 10 || dateEnd.length !== 10 || update.length !== 10) {
+        } else if (dateStart.length !== 10 || dateEnd.length !== 10 || updated.length !== 10) {
             res.json({result: 'Некорректные данные'})
             console.log('shit date')
         } else if (!(0 < priority.length < 21 || 0 < status.length < 21))  {

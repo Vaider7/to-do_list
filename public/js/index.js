@@ -249,7 +249,7 @@ $(document).on('click', '.submit', (e) =>{
             $wrongMessage.text('Корректно заполните каждое поле')
         } else {
             let details = $task.serialize()
-            console.log(details)
+
             $.ajax({
                 url: '/api/task/data',
                 type: 'POST',
@@ -257,7 +257,6 @@ $(document).on('click', '.submit', (e) =>{
                 data: details,
                 connectType: 'application/json',
                 success:  (data) => {
-                    console.log(data.result)
                     if (data.result === true) {
                         window.location.pathname = '/'
                     } else {
@@ -274,7 +273,12 @@ $(document).on('click', '.submit', (e) =>{
 
 $('html').on('click', () => {
     $('.wrong_message').text('')
+    let t = [1, 2]
+    let g = [1, 2]
+    let j = [t, g]
+    j.forEach((item) => {
+        console.log(item[0])
+        console.log(item[1])
+    })
 })
-
-
 
