@@ -70,7 +70,7 @@
     <%}%>
 
     <% if (tasks[i]['status'] === 'in_process') {%>
-        <% tasks[i]['status'] = 'В процессе'%>
+        <% tasks[i]['status'] = 'К выполнению'%>
     <%}%>
     <% if (tasks[i]['status'] === 'canceling') {%>
             <% tasks[i]['status'] = 'Отмена'%>
@@ -98,7 +98,7 @@
 
         <div class="task" id="<%= tasks[i]['idTask']%>">
         <div class="first_line">
-            <div class="task_header <%=completed%>"> <%= tasks[i]['taskHeader']%> </div>
+            <div class="task_header <%=completed%>"><%=tasks[i]['taskHeader']%></div>
                 <div class="buttons">
                     <svg version="1.1" id="gear" class="ico" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                          viewBox="0 0 368 368" style="enable-background:new 0 0 368 368;" xml:space="preserve">
@@ -254,21 +254,19 @@
         <div class="second_line">
             <div class="date">
                 <div class="timing">Сроки:&nbsp;</div>
-                <div class="date_start"><%= tasks[i]['dateStart']%>&nbsp;</div><div class="dash">-&nbsp;</div><div class="date_end"><%= tasks[i]['dateEnd']%>&nbsp;</div>
+                <div class="date_start"><%=tasks[i]['dateStart']%></div><div class="dash">&nbsp;-&nbsp;</div><div class="date_end"><%=tasks[i]['dateEnd']%></div>
             </div>
-                <div class="priority">Приоритет:&nbsp;<span class="priority_value"><%= tasks[i]['priority']%></span> </div>
+                <div class="priority">Приоритет:&nbsp;<span class="priority_value"><%=tasks[i]['priority']%></span> </div>
         </div>
         <div class="third_line">
-            <div class="status">Статус:&nbsp;<span class="status_value"><%= tasks[i]['status']%></span></div>
-            <div class="update">Дата обновления:&nbsp;<span class="update_value"><%= tasks[i]['updated']%></span></div>
+            <div class="status">Статус:&nbsp;<span class="status_value"><%=tasks[i]['status']%></span></div>
+            <div class="update">Дата обновления:&nbsp;<span class="update_value"><%=tasks[i]['updated']%></span></div>
         </div>
         <div class="description_container hidden">
             <div class="description_line">
                 <div class="description_header">Описание:</div>
             </div>
-            <div class="description">
-                <%= tasks[i]['description']%>
-            </div>
+            <div class="description"><%=tasks[i]['description']%></div>
         </div>
     </div>
     <% } %>
