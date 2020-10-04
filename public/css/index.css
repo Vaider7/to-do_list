@@ -290,3 +290,53 @@ button:hover {
 .hidden {
     display: none;
 }
+
+.confirm_deleting_background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    opacity: 0.6;
+
+}
+
+.confirm_deleting_box {
+    width: 400px;
+    height: 100px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto auto;
+    position: fixed;
+    background-color: #ffffff;
+    border-radius: 15px;
+
+}
+
+.confirm_deleting_warning {
+   position: absolute;
+   top: 36px;
+   left: 88px;
+}
+
+.cancel_deleting_button {
+    box-shadow: 0 0 1px 1px #d3d3d3;
+    margin-top: 67px
+}
+
+.cancel_deleting_button:hover {
+    box-shadow: 0 0 2px 2px #d3d3d3;
+}
+
+.confirm_deleting_button {
+    box-shadow: 0 0 1px 1px #ff7676;
+    margin-top: 67px
+}
+
+.confirm_deleting_button:hover {
+    box-shadow: 0 0 2px 2px #ff7676;
+}
+

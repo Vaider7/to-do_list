@@ -46,7 +46,8 @@ app.use('/', routes.main);
 app.use('/api/reg', routes.reg);
 app.use('/api/auth', routes.auth)
 app.use('/api/logout', routes.logout)
-app.use('/api/task', routes.addTask)
+app.use('/api/task/add', routes.addTask)
+app.use('/api/task/delete', routes.deleteTask)
 
 
 // catch 404 and forward to error handler

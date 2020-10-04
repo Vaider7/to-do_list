@@ -1,5 +1,3 @@
-$('.confirm_deleting_container').hide()
-
 $('#logout').on('click', () => {
     $.ajax({
         type: 'GET',
@@ -159,7 +157,7 @@ $(document).on('click', '.submit', (e) =>{
             let details = $task.serialize()
             console.log(details)
             $.ajax({
-                url: '/api/task/data',
+                url: '/api/task/add/data',
                 type: 'POST',
                 dataType: 'json',
                 data: details,
@@ -167,8 +165,6 @@ $(document).on('click', '.submit', (e) =>{
                 success:  (data) => {
                     if (data.result === true) {
                         window.location.pathname = '/'
-                    } else {
-                        $('.wrong_message').text(data.result)
                     }
                 },
                 error:  (err) => {
@@ -194,10 +190,38 @@ $('html').on('click', () => {
 
 $(document).on('click', '#cross', (e) => {
     let $task = $(e.target).parents('.task')
-    $task.addClass('deleting')
     if ($task.hasClass('new')) {
         $task.remove()
     } else {
-
+        $task.addClass('deleting')
+        $('.confirm_deleting_background').removeClass('hidden')
+        $('.confirm_deleting_box').removeClass('hidden')
     }
+})
+
+$(document).on('click', '.cancel_deleting_button', () => {
+    $('.task').removeClass('deleting')
+    $('.confirm_deleting_background').addClass('hidden')
+    $('.confirm_deleting_box').addClass('hidden')
+})
+
+$(document).on('click', '.confirm_deleting_button', () => {
+    let details = {id: $('.task.deleting').attr('id')}
+    $.ajax({
+        url: '/api/task/delete/data',
+        type: 'POST',
+        dataType: 'json',
+        data: details,
+        connectType: 'application/json',
+        success:  (data) => {
+            console.log(data)
+            if (data.result === true) {
+                window.location.pathname = '/'
+            }
+        },
+        error:  (err) => {
+            console.log(err)
+        }
+    })
+
 })

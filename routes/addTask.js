@@ -1,12 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const session = require('express-session');
 const conn = require('../database/connectDB');
 
 router.post('/data', ((req, res) => {
     if (!req.session.userId) return () => {
         res.json({result: 'Accessed is denied'});
         res.sendStatus(403);
+    }
+
+    if (!req.body) return () => {
+        res.json({result: 'Отправлена пустая форма'});
     }
 
     let taskHeader = req.body.task_header;
