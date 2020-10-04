@@ -162,7 +162,7 @@ input {
 
 .third_line {
     width: 100%;
-    padding: 10px 0 0 10px;
+    padding: 10px 0 10px 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -179,7 +179,7 @@ input {
 
 .description_line {
     width: 100%;
-    padding: 10px 0 0 10px;
+    padding-left: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -279,3 +279,14 @@ button:hover {
     -webkit-transition: 0.1s linear;
 }
 
+.completed {
+    color: #00c100
+}
+
+.failed {
+    color: #ff0000;
+}
+
+.hidden {
+    display: none;
+}
