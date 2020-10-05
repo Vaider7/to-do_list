@@ -344,28 +344,45 @@ $(document).on('click', '.cancel_changing_button', () => {
 })
 
 $(document).on('click', '.confirm_changing_button', () => {
-    let changingTask = $('.changing_on')
-    let details = changingTask.children('.new_task').serialize()
-    let idTask = changingTask.attr('id')
+    let $changingTask = $('.changing_on')
+    console.log($changingTask)
+    let details = $changingTask.children('.new_task').serialize()
+    let idTask = $changingTask.attr('id')
 
-    let data =  details + '&idtask=' + idTask
 
-    $.ajax({
-        url: '/api/task/changing/data',
-        type: 'POST',
-        dataType: 'json',
-        data: data,
-        connectType: 'application/json',
-        success:  (data) => {
-            console.log(data)
-            if (data.result === true) {
-                window.location.pathname = '/'
+
+    let taskHeader = $changingTask.children('.new_task').children('.first_line').children('.task_header').children('.task_header_input').val()
+    let dateStart = $changingTask.children('.new_task').children('.second_line').children('.date').children('.date_start').children('.date_start_input').val()
+    let dateEnd = $changingTask.children('.new_task').children('.second_line').children('.date').children('.date_end').children('.date_end_input').val()
+    let updated = $changingTask.children('.new_task').children('.third_line').children('.update').children('.update_value').children('.update_input').val()
+    let description = $changingTask.children('.new_task').children('.textarea')
+
+    let $wrongMessage = $changingTask.children('.new_task').children('.wrong_message')
+    if (taskHeader.length < 1 || description < 1) {
+        $wrongMessage.text('Корректно заполните каждое поле')
+    } else if (dateStart.length !== 10 || dateEnd.length !== 10 || updated.length !== 10) {
+        $wrongMessage.text('Корректно заполните каждое поле')
+    } else {
+
+        let data =  details + '&idtask=' + idTask
+
+        $.ajax({
+            url: '/api/task/changing/data',
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+            connectType: 'application/json',
+            success:  (data) => {
+                console.log(data)
+                if (data.result === true) {
+                    window.location.pathname = '/'
+                }
+            },
+            error:  (err) => {
+                console.log(err)
             }
-        },
-        error:  (err) => {
-            console.log(err)
-        }
-    })
+        })
+    }
 })
 
 

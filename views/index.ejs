@@ -90,8 +90,7 @@
         <% if (tasks[i]['status'] !== 'Отмена') {%>
             <% if (tasks[i]['status'] === 'Выполнена') {%>
                 <% completed = 'completed'%>
-            <%} else%>
-            <%if (end.getTime() - today.getTime() < 0) {%>
+            <%} else if (end.getTime() - today.getTime() < 0) {%>
             <% completed = 'failed'%>
             <%}%>
         <%}%>

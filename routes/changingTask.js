@@ -55,7 +55,6 @@ router.post('/data', ((req, res) => {
         }
     }
 
-
     if (!(0 < taskHeader.length < 51 || 0 < description < 1201)) {
         res.json({result: 'Некорректные данные'})
     } else if (dateStart.length !== 10 || dateEnd.length !== 10 || updated.length !== 10) {
@@ -69,17 +68,14 @@ router.post('/data', ((req, res) => {
                     res.json({result: 'Accessed is denied'});
                     res.sendStatus(403);
                 } else {
-                    conn.query(`UPDATE tasks 
-                    SET 
-                    taskHeader = "${taskHeader}}, 
-                    dateStart = "${dateStart}", 
-                    dateEnd = "${dateEnd}", 
-                    priority = "${priority}", 
-                    status ="${status}", 
-                    updated = "${updated}", 
-                    description = "${description}"
-                    WHERE 
-                    idTask = "${idTask}"`).then(console.log('Changing is successful'))
+                    conn.query(`UPDATE tasks SET taskHeader = "${taskHeader}", dateStart = "${dateStart}", dateEnd = "${dateEnd}", priority = "${priority}", status ="${status}", updated = "${updated}", description = "${description}" WHERE idTask = "${idTask}"`)
+                        .then( () => {
+                            console.log('Changing is successful')
+                            res.json({result: true})
+                        })
+                        .catch(err => {
+                            console.log(err)
+                        })
                 }
             })
     }
