@@ -5,6 +5,7 @@ main = require('./main')
 sign_in = require('./sign_in')
 addTask = require('./addTask')
 deleteTask = require('./deleteTask')
+changingTask = require('./changingTask')
 
 
 module.exports = {
@@ -14,5 +15,6 @@ module.exports = {
     main,
     sign_in,
     addTask,
-    deleteTask
+    deleteTask,
+    changingTask
 }

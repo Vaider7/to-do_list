@@ -338,14 +338,34 @@ $(document).on('click', '#gear', (e) => {
 })
 
 $(document).on('click', '.cancel_changing_button', () => {
-    $('.task').each(function () {
-        if ($(this).hasClass('changing_off')) {
-            $(this).removeClass('changing_off')
-            $(this).removeClass('hidden')
-        }
-        if ($(this).hasClass('changing_on')) {
-            $(this).remove()
-            return false
+    $('.changing_on').remove()
+    $('.changing_off').removeClass('hidden').removeClass('changing_off')
+
+})
+
+$(document).on('click', '.confirm_changing_button', () => {
+    let changingTask = $('.changing_on')
+    let details = changingTask.children('.new_task').serialize()
+    let idTask = changingTask.attr('id')
+
+    let data =  details + '&idtask=' + idTask
+
+    $.ajax({
+        url: '/api/task/changing/data',
+        type: 'POST',
+        dataType: 'json',
+        data: data,
+        connectType: 'application/json',
+        success:  (data) => {
+            console.log(data)
+            if (data.result === true) {
+                window.location.pathname = '/'
+            }
+        },
+        error:  (err) => {
+            console.log(err)
         }
     })
 })
+
+
