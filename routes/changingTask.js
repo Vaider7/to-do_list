@@ -70,7 +70,7 @@ router.post('/data', ((req, res) => {
                 } else {
                     conn.query(`UPDATE tasks SET taskHeader = "${taskHeader}", dateStart = "${dateStart}", dateEnd = "${dateEnd}", priority = "${priority}", status ="${status}", updated = "${updated}", description = "${description}" WHERE idTask = "${idTask}"`)
                         .then( () => {
-                            console.log('Changing is successful')
+                            console.log('Changing successful')
                             res.json({result: true})
                         })
                         .catch(err => {

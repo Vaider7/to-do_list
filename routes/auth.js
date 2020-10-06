@@ -16,6 +16,7 @@ router.post('/data', ((req, res) => {
                     bcrypt.compare(password, user[0][0]['hashedPassword']).then((passRes) => {
                         if (passRes === true) {
                             req.session.userId = user[0][0]['id']
+                            req.session.teamsId = []
                             res.json({result: true})
                         } else {
                             res.json({result: 'Неверный логин или пароль'})

@@ -6,6 +6,7 @@ sign_in = require('./sign_in')
 addTask = require('./addTask')
 deleteTask = require('./deleteTask')
 changingTask = require('./changingTask')
+teams = require('./teams')
 
 
 module.exports = {
@@ -16,5 +17,6 @@ module.exports = {
     sign_in,
     addTask,
     deleteTask,
-    changingTask
+    changingTask,
+    teams
 }

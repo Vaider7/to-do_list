@@ -1,0 +1,132 @@
+body {
+    width: 100%;
+    height: 100%;
+    font-family: Helvetica-Regular, Arial, sans-serif;
+    font-size: 16px;
+}
+
+input {
+    font-family: Helvetica-Regular, Arial, sans-serif !important;
+}
+
+.side_bar_container {
+    top:0;
+    left: 0;
+    position: fixed;
+    height: 100%;
+    width: 275px;
+    float: left;
+    border-right: 1px solid #d3d3d3;
+}
+
+.name {
+    font-family: Poppins-Regular, Helvetica-Regular, Arial, sans-serif;
+    color: #20BEFF;
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.side_bar {
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+}
+
+.bar_element {
+    cursor: pointer;
+    display: inline-flex;
+    position: relative;
+    margin-bottom: 5px;
+    height: 50px;
+}
+
+.bar_element:hover {
+    background: #fafafa;
+}
+
+.bar_element_name {
+    padding-left: 5px;
+    padding-top: 14px;
+}
+
+.badge {
+    padding-right: 5px;
+    padding-top: 12.5px;
+    height: 25px;
+    padding-left: 30px;
+}
+
+.header_container {
+    display: inline-block;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.add_task_ico {
+    cursor: pointer;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    float: right;
+    fill: #808080;
+    transition: 0.2s ease-in-out;
+}
+
+.add_task_ico:hover {
+    fill: #20BEFF;
+    transition: 0.2s ease-in-out;
+}
+
+.tasks_container {
+    width: 700px;
+    float: left;
+    position: relative;
+    margin-left: 375px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.left_part {
+    display: inline-block;
+    width: 300px;
+}
+
+.join_team, .create_team {
+    display: inline-block;
+    font-size: 18px;
+    text-decoration: underline;
+    color: #8d8d8d;
+    cursor: pointer;
+    padding-bottom: 10px;
+}
+
+.join_team:hover, .create_team:hover {
+    color: #474747;
+}
+
+.join_team_form {
+    float: right;
+}
+
+.join_container_data {
+    padding-bottom: 8px;
+    display: flex;
+    flex-direction: row-reverse;
+
+}
+
+fieldset {
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+legend {
+    padding: 0 5px 0 5px;
+}
+
+label {
+    padding-right: 10px;
+}

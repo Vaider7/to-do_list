@@ -23,7 +23,7 @@ router.post('/data', ((req, res) => {
                 conn.query(`SELECT email FROM users WHERE email = "${email}"`)
                     .then(emailCheck => {
                         if (emailCheck[0][0] === undefined) {
-                            if (1 <= login.length <= 30) {
+                            if (1 <= login.length <= 20) {
                                 if (1 <= email.length <= 50) {
                                     if (1 <= password.length <= 25) {
                                         if (1 <= name.length <= 40) {
@@ -54,7 +54,7 @@ router.post('/data', ((req, res) => {
                                     res.json({result: 'Email должен иметь от 1 до 50 символов'})
                                 }
                             } else {
-                                res.json({result: 'Логин должен иметь от 1 до 30 символов'})
+                                res.json({result: 'Логин должен иметь от 1 до 20 символов'})
                             }
                         } else {
                             res.json({result: 'Почта занята', field: 'email'})

@@ -50,6 +50,7 @@ app.use('/api/logout', routes.logout)
 app.use('/api/task/add', routes.addTask)
 app.use('/api/task/delete', routes.deleteTask)
 app.use('/api/task/changing', routes.changingTask)
+app.use('/teams', routes.teams)
 
 
 // catch 404 and forward to error handler

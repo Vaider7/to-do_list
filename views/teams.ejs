@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Sticky</title>
+    <link rel="stylesheet" href="css/base_settings.css">
+    <link rel="stylesheet" href="css/teams.css">
+</head>
+<body>
+<div class="side_bar_container">
+    <div class="name">Sticky</div>
+    <div class="side_bar">
+        <a href="/" class="bar_element" id="my_task"><img src="img/login.svg" alt="" class="badge"><span class="bar_element_name">Мои задачи</span></a>
+        <a href="/teams" class="bar_element" id="my_teams"><img src="img/team.svg" alt="" class="badge"><span class="bar_element_name">Мои команды</span></a>
+        <div class="bar_element" id="logout"><img src="img/door.svg" alt="" class="badge"><span class="bar_element_name">Выйти из аккаунта</span></div>
+    </div>
+</div>
+<div class="tasks_container">
+    <div class="left_part">
+        <div class="header_container"> Мои команды </div>
+        <div class="join_team">Присоеденитсья к команде</div>
+        <div class="create_team">Создать команду</div>
+    </div>
+    <form class="join_team_form">
+        <fieldset>
+            <legend>Присоедениться к команде</legend>
+            <div class="join_container_data">
+                <input type="text" name="joinLogin" id="joinLogin">
+                <label for="joinLogin">Имя команды</label>
+            </div>
+            <div class="join_container_data">
+                <input type="text" name="joinLogin" id="joinLogin">
+                <label for="joinLogin">Пароль</label>
+            </div>
+            <div class="join_container_data">
+                <button type="button">Присоедениться</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<script src="plugins/jquery-3.5.1.min.js"></script>
+<script src="plugins/cleave-1.6.0.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>
