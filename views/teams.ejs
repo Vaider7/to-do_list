@@ -21,7 +21,7 @@
         <div class="join_team">Присоеденитсья к команде</div>
         <div class="create_team">Создать команду</div>
     </div>
-    <form class="join_team_form">
+    <form class="join_team_form join_slided">
         <fieldset>
             <legend>Присоедениться к команде</legend>
             <div class="join_container_data">
@@ -29,11 +29,38 @@
                 <label for="joinLogin">Имя команды</label>
             </div>
             <div class="join_container_data">
-                <input type="text" name="joinLogin" id="joinLogin">
-                <label for="joinLogin">Пароль</label>
+                <input type="password" name="joinPassword" id="joinPassword">
+                <label for="joinPassword">Пароль</label>
             </div>
             <div class="join_container_data">
-                <button type="button">Присоедениться</button>
+                <button type="button" id="joinButton">Присоедениться</button>
+            </div>
+        </fieldset>
+    </form>
+    <form class="create_team_form create_slided">
+        <fieldset>
+            <legend>Создать команду</legend>
+            <div class="create_container_data ">
+                <input type="text" name="createLogin" id="createLogin">
+                <label for="createLogin">Имя команды</label>
+            </div>
+            <div class="create_container_data">
+                <input type="password" name="createPassword" id="createPassword" placeholder="(необязательно)">
+                <label for="createPassword">Пароль</label>
+            </div>
+            <div class="create_container_data">
+                <span>Добавление задач:</span>
+            </div>
+            <div class="create_container_data">
+                <input type="radio" id="all" name="power" value="all" checked>
+                <label for="all" class="label_create" id="all_label">Все учатники</label>
+            </div>
+            <div class="create_container_data">
+                <input type="radio" id="leader" name="power" value="leader">
+                <label for="leader" class="label_create">Только создатель</label>
+            </div>
+            <div class="create_container_data">
+                <button type="button" id="createButton">Создать</button>
             </div>
         </fieldset>
     </form>
@@ -41,6 +68,6 @@
 
 <script src="plugins/jquery-3.5.1.min.js"></script>
 <script src="plugins/cleave-1.6.0.js"></script>
-<script src="js/index.js"></script>
+<script src="js/teams.js"></script>
 </body>
 </html>
