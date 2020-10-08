@@ -25,27 +25,28 @@
         <fieldset>
             <legend>Присоедениться к команде</legend>
             <div class="join_container_data">
-                <input type="text" name="joinLogin" id="joinLogin">
+                <input type="text" name="joinLogin" id="joinLogin" maxlength="20">
                 <label for="joinLogin">Имя команды</label>
             </div>
             <div class="join_container_data">
-                <input type="password" name="joinPassword" id="joinPassword">
+                <input type="password" name="joinPassword" id="joinPassword" maxlength="25">
                 <label for="joinPassword">Пароль</label>
             </div>
             <div class="join_container_data">
                 <button type="button" id="joinButton">Присоедениться</button>
             </div>
+            <div class="wrong"></div>
         </fieldset>
     </form>
     <form class="create_team_form create_slided">
         <fieldset>
             <legend>Создать команду</legend>
             <div class="create_container_data ">
-                <input type="text" name="createLogin" id="createLogin">
+                <input type="text" name="createLogin" id="createLogin" maxlength="20">
                 <label for="createLogin">Имя команды</label>
             </div>
             <div class="create_container_data">
-                <input type="password" name="createPassword" id="createPassword" placeholder="(необязательно)">
+                <input type="password" name="createPassword" id="createPassword" placeholder="(необязательно)" maxlength="25">
                 <label for="createPassword">Пароль</label>
             </div>
             <div class="create_container_data">
@@ -62,6 +63,7 @@
             <div class="create_container_data">
                 <button type="button" id="createButton">Создать</button>
             </div>
+            <div class="wrong"></div>
         </fieldset>
     </form>
 </div>

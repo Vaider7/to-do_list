@@ -192,3 +192,7 @@ button.on:hover, button.on:focus {
 .create_slide_down {
     transform: translateY(-119px);
 }
+
+.wrong {
+    color: #ff0000
+}

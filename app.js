@@ -25,7 +25,7 @@ app.use(
     session({
         secret: config.SECRET_CODE_SESSION,
         resave: true,
-        saveUninitialized: false,
+        saveUninitialized: true,
         store: sessionStore,
         cookie: {
             expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),
@@ -51,6 +51,8 @@ app.use('/api/task/add', routes.addTask)
 app.use('/api/task/delete', routes.deleteTask)
 app.use('/api/task/changing', routes.changingTask)
 app.use('/teams', routes.teams)
+app.use('/api/team/add', routes.addTeam)
+app.use('/api/team/join', routes.joinTeam)
 
 
 // catch 404 and forward to error handler
