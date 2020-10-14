@@ -1,3 +1,15 @@
+$('#logout').on('click', () => {
+    $.ajax({
+        type: 'GET',
+        url: 'api/logout',
+        success: (data) => {
+            if (data.result === true) {
+                window.location.pathname = '/sign_in'
+            }
+        }
+    })
+})
+
 $('input').on('keyup', () => {
     if ($('#joinLogin').val() !== '') {
         $('#joinButton').addClass('on')
@@ -49,7 +61,7 @@ $('#joinButton').on('click', () => {
             connectType: 'application/json',
             success:  (data) => {
                 if (data.result === true) {
-                    window.location.pathname = `/teams/${name}`
+                    window.location.pathname = `/teams`
                 } else {
                     $('.wrong').text(data.result)
                 }

@@ -10,6 +10,4 @@ for (let table = 0; table < tables.length; table++) {
         })
     }
 
-
-
 conn.end()

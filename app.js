@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const path = require('path');
 const config = require('./config/config');
 const sessionStore = require('./database/connectMYSQLStore')
 const routes = require('./routes/index');
@@ -24,8 +23,8 @@ conn.connect()
 app.use(
     session({
         secret: config.SECRET_CODE_SESSION,
-        resave: true,
-        saveUninitialized: true,
+        resave: false,
+        saveUninitialized: false,
         store: sessionStore,
         cookie: {
             expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),
@@ -38,7 +37,7 @@ app.use(
 //sets and uses
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname + '/public'));
 
 
 //routes
@@ -53,6 +52,7 @@ app.use('/api/task/changing', routes.changingTask)
 app.use('/teams', routes.teams)
 app.use('/api/team/add', routes.addTeam)
 app.use('/api/team/join', routes.joinTeam)
+app.use('/teams', routes.pageTeam)
 
 
 // catch 404 and forward to error handler

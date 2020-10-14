@@ -9,6 +9,7 @@ changingTask = require('./changingTask')
 teams = require('./teams')
 addTeam = require('./addTeam')
 joinTeam = require('./joinTeam')
+pageTeam = require('./pageTeam')
 
 module.exports = {
     reg,
@@ -21,5 +22,6 @@ module.exports = {
     changingTask,
     teams,
     addTeam,
-    joinTeam
+    joinTeam,
+    pageTeam
 }

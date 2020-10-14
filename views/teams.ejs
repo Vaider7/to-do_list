@@ -21,6 +21,11 @@
         <div class="join_team">Присоеденитсья к команде</div>
         <div class="create_team">Создать команду</div>
     </div>
+    <div class="teams">
+    <%for (let i = 0; i < teams.length; i++) {%>
+        <a class="team" href="<%='/teams/'+teams[i]%>"><%=teams[i]%></a> <br> <br>
+    <%}%>
+    </div>
     <form class="join_team_form join_slided">
         <fieldset>
             <legend>Присоедениться к команде</legend>

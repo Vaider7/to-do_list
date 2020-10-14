@@ -30,7 +30,11 @@ router.post('/data', ((req, res) => {
                     } else {
                         if (password.length === 0) {
                             conn.query(`INSERT INTO teams (name, hashedPassword, adding) VALUES ("${name}", "${password}", "${power}")`)
-                                .then( () => {console.log('Adding user successful'); res.json({result: true})})
+                                .then( (team) => {
+                                    console.log('Adding team successful');
+                                    req.session.teamsId.push(team[0]['insertId'])
+                                    res.json({result: true})
+                                })
                                 .catch(err => {
                                     console.log(err)
                             })
@@ -38,7 +42,11 @@ router.post('/data', ((req, res) => {
                             bcrypt.genSalt(10, (err, salt) => {
                                 bcrypt.hash(password, salt, (err, hashedPassword) => {
                                     conn.query(`INSERT INTO teams (name, hashedPassword, adding) VALUES ("${name}", "${hashedPassword}", "${power}")`)
-                                        .then( () => {console.log('Adding user successful'); res.json({result: true})})
+                                        .then( (team) => {
+                                            console.log('Adding team successful');
+                                            req.session.teamsId.push(team[0]['insertId'])
+                                            res.json({result: true})
+                                        })
                                         .catch(err => {
                                             console.log(err)
                                         })

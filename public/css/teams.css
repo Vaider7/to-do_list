@@ -196,3 +196,17 @@ button.on:hover, button.on:focus {
 .wrong {
     color: #ff0000
 }
+
+.teams {
+    position: absolute;
+    padding-top: 25px;
+}
+
+.team {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.team:hover, .team:focus {
+    text-decoration: underline;
+}

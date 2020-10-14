@@ -19,29 +19,36 @@ router.post('/data', ((req, res) => {
     let password = req.body.joinPassword;
 
 
-
     conn.query(`SELECT name, hashedPassword, id FROM teams WHERE name = "${name}"`)
         .then((team) => {
             if (!(team[0][0] === undefined)) {
-                if (password.length === 0) {
-                    if (team[0][0]['name'] === name) {
-                        req.session.teamsId.push(team[0][0]['id'])
-                        res.json({result: true})
-                    } else {
-                        res.json({result: 'Неверный имя или пароль'})
+                let checkInto = false
+                for (let i = 0; i < req.session.teamsId.length; i++) {
+                    if (req.session.teamsId[i] === team[0][0]['id']) {
+                        checkInto = true
+                        break
                     }
+                }
+                if (checkInto) {
+                    res.json({result: 'Вы уже состоите в этой команде'})
                 } else {
-                    bcrypt.compare(password, team[0][0]['hashedPassword']).then((passRes) => {
-                        if (passRes) {
-                            let id = parseInt(team[0][0]['id'])
-                            req.session.teamsId.push(id)
-                            req.session.reload( () => {
-
-                            })
+                    if (password.length === 0 && team[0][0]['hashedPassword'] === '') {
+                        if (team[0][0]['name'] === name) {
+                            req.session.teamsId.push(team[0][0]['id'])
+                            res.json({result: true})
                         } else {
                             res.json({result: 'Неверный имя или пароль'})
                         }
-                    });
+                    } else {
+                        bcrypt.compare(password, team[0][0]['hashedPassword']).then((passRes) => {
+                            if (passRes) {
+                                req.session.teamsId.push(team[0][0]['id'])
+                                res.json({result: true})
+                            } else {
+                                res.json({result: 'Неверный имя или пароль'})
+                            }
+                        });
+                    }
                 }
             } else {
                 res.json({result: 'Неверное имя или пароль'})
