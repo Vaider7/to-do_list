@@ -11,7 +11,7 @@ router.get('/:id', ((req, res, next) => {
         res.json({result: 'Отправлена пустая форма'});
     }
 
-    conn.query(`SELECT id, name FROM teams WHERE name = "${req.params.id}"`).then(team => {
+    conn.query(`SELECT id, name, adding, admin FROM teams WHERE name = "${req.params.id}"`).then(team => {
         if (team[0][0] === undefined) {
             next()
         } else {
@@ -23,8 +23,8 @@ router.get('/:id', ((req, res, next) => {
                 }
             }
             if (checkId) {
-                conn.query(`SELECT * FROM teamTasks WHERE idTeam = "${req.params.id}"`).then(tasks => {
-                    res.render('pageTeam', {tasks: tasks[0], team: team[0]})
+                    conn.query(`SELECT * FROM teamTasks WHERE idTeam = "${team[0][0]['id']}"`).then(tasks => {
+                    res.render('pageTeam', {tasks: tasks[0], team: team[0], userId: req.session.userId})
                 }).catch(err => {
                     console.log(err)
                 })

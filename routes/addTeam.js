@@ -16,6 +16,7 @@ router.post('/data', ((req, res) => {
     let name = req.body.createLogin
     let password = req.body.createPassword
     let power = req.body.power
+    let admin= req.session.userId
 
     conn.query(`SELECT name FROM teams WHERE name = "${name}"`)
         .then(checkTeam => {
@@ -29,7 +30,7 @@ router.post('/data', ((req, res) => {
                         res.json({result: 'Пароль должен иметь от 0 до 25 символов'})
                     } else {
                         if (password.length === 0) {
-                            conn.query(`INSERT INTO teams (name, hashedPassword, adding) VALUES ("${name}", "${password}", "${power}")`)
+                            conn.query(`INSERT INTO teams (name, hashedPassword, adding, admin) VALUES ("${name}", "${password}", "${power}", "${admin}")`)
                                 .then( (team) => {
                                     console.log('Adding team successful');
                                     req.session.teamsId.push(team[0]['insertId'])
@@ -41,7 +42,7 @@ router.post('/data', ((req, res) => {
                         } else {
                             bcrypt.genSalt(10, (err, salt) => {
                                 bcrypt.hash(password, salt, (err, hashedPassword) => {
-                                    conn.query(`INSERT INTO teams (name, hashedPassword, adding) VALUES ("${name}", "${hashedPassword}", "${power}")`)
+                                    conn.query(`INSERT INTO teams (name, hashedPassword, adding, admin) VALUES ("${name}", "${hashedPassword}", "${power}", "${admin}")`)
                                         .then( (team) => {
                                             console.log('Adding team successful');
                                             req.session.teamsId.push(team[0]['insertId'])

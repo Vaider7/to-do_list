@@ -10,4 +10,8 @@ for (let table = 0; table < tables.length; table++) {
         })
     }
 
+conn.query(`SHOW TABLES`).then(values => {
+    console.log(values)
+})
+
 conn.end()

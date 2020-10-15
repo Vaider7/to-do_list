@@ -66,7 +66,6 @@ function addTask () {
         '                <div class="date_start"><input type="text" name="date_start" class="date_input date_start_input">\n' +
         '                </div><div class="dash">-&nbsp;</div>\n' +
         '                <div class="date_end"><input type="text" name="date_end" class="date_input date_end_input"></div>\n' +
-        '                <div class="days_left"><span class="days_left_value"></span></div>\n' +
         '            </div>\n' +
         '            <div class="priority">Приоритет:&nbsp;\n' +
         '                <span class="priority_value">\n' +
@@ -90,6 +89,9 @@ function addTask () {
         '            </div>\n' +
         '            <div class="update">Дата обновления:&nbsp;<span class="update_value"><input type="text" name="updated" class="date_input update_input"></span></div>\n' +
         '        </div>\n' +
+        '        <div class="fourth_line">' +
+        '           <div class="responsible">Ответственный:&nbsp;<span class="responsible_value"><input type="text" name="responsible" class="fourth_line_input responsible_input" maxlength="20"></span></div>\n' +
+        '        </div> \n' +
         '        <div class="description_line">\n' +
         '            <div class="description_header">Описание:</div>\n' +
         '        </div>\n' +
@@ -145,6 +147,7 @@ $(document).on('click', '.submit', (e) =>{
         let dateStart = $task.children('.second_line').children('.date').children('.date_start').children('.date_start_input').val()
         let dateEnd = $task.children('.second_line').children('.date').children('.date_end').children('.date_end_input').val()
         let updated = $task.children('.third_line').children('.update').children('.update_value').children('.update_input').val()
+        let responsible = $task.children('.fourth_line').children('.responsible').children('.responsible_value').children('.responsible_input').val()
         let description = $task.children('.textarea')
 
         let $wrongMessage = $task.children('.wrong_message')
@@ -155,16 +158,16 @@ $(document).on('click', '.submit', (e) =>{
             $wrongMessage.text('Корректно заполните каждое поле')
         } else {
             let details = $task.serialize()
-            console.log(details)
+            let nameTeam = $('.name_team').text()
             $.ajax({
-                url: '/api/task/add/data',
+                url: `/api/team/task/add/data/${nameTeam}`,
                 type: 'POST',
                 dataType: 'json',
                 data: details,
                 connectType: 'application/json',
                 success:  (data) => {
                     if (data.result === true) {
-                        window.location.pathname = '/'
+                        window.location.pathname = `/teams/${nameTeam}`
                     }
                 },
                 error:  (err) => {
@@ -179,8 +182,10 @@ $(document).on('click', '#pointer-down', (e) => {
     let $task = $(e.target).parents()
     if ($task.children('.description_container').hasClass('hidden')){
         $task.children('.description_container').removeClass('hidden')
+        $task.children('.fourth_line').removeClass('hidden')
     } else {
         $task.children('.description_container').addClass('hidden')
+        $task.children('.fourth_line').addClass('hidden')
     }
 })
 
@@ -207,8 +212,9 @@ $(document).on('click', '.cancel_deleting_button', () => {
 
 $(document).on('click', '.confirm_deleting_button', () => {
     let details = {id: $('.task.deleting').attr('id')}
+    let nameTeam = $('.name_team').text()
     $.ajax({
-        url: '/api/task/delete/data',
+        url: `/api/team/task/delete/data/${nameTeam}`,
         type: 'POST',
         dataType: 'json',
         data: details,
@@ -216,7 +222,7 @@ $(document).on('click', '.confirm_deleting_button', () => {
         success:  (data) => {
             console.log(data)
             if (data.result === true) {
-                window.location.pathname = '/'
+                window.location.pathname = `/teams/${nameTeam}`
             }
         },
         error:  (err) => {

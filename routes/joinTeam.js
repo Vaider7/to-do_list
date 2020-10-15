@@ -37,7 +37,7 @@ router.post('/data', ((req, res) => {
                             req.session.teamsId.push(team[0][0]['id'])
                             res.json({result: true})
                         } else {
-                            res.json({result: 'Неверный имя или пароль'})
+                            res.json({result: 'Неверное имя или пароль'})
                         }
                     } else {
                         bcrypt.compare(password, team[0][0]['hashedPassword']).then((passRes) => {
@@ -45,7 +45,7 @@ router.post('/data', ((req, res) => {
                                 req.session.teamsId.push(team[0][0]['id'])
                                 res.json({result: true})
                             } else {
-                                res.json({result: 'Неверный имя или пароль'})
+                                res.json({result: 'Неверное имя или пароль'})
                             }
                         });
                     }

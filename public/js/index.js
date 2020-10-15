@@ -66,7 +66,6 @@ function addTask () {
         '                <div class="date_start"><input type="text" name="date_start" class="date_input date_start_input">\n' +
         '                </div><div class="dash">-&nbsp;</div>\n' +
         '                <div class="date_end"><input type="text" name="date_end" class="date_input date_end_input"></div>\n' +
-        '                <div class="days_left"><span class="days_left_value"></span></div>\n' +
         '            </div>\n' +
         '            <div class="priority">Приоритет:&nbsp;\n' +
         '                <span class="priority_value">\n' +
@@ -110,7 +109,6 @@ $('.date_input').each(function () {
 })
 
 $('.add_task_ico').on('click', (e) =>{
-    // console.log($('.task').length)
     if ($('.task').length === 0) {
         addTask()
         $('.date_input').each(function () {
@@ -155,7 +153,6 @@ $(document).on('click', '.submit', (e) =>{
             $wrongMessage.text('Корректно заполните каждое поле')
         } else {
             let details = $task.serialize()
-            console.log(details)
             $.ajax({
                 url: '/api/task/add/data',
                 type: 'POST',

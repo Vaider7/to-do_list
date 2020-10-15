@@ -53,7 +53,8 @@ app.use('/teams', routes.teams)
 app.use('/api/team/add', routes.addTeam)
 app.use('/api/team/join', routes.joinTeam)
 app.use('/teams', routes.pageTeam)
-
+app.use('/api/team/task/add', routes.addTeamTask)
+app.use('/api/team/task/delete', routes.deleteTeamTask)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

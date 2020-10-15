@@ -3,59 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <title>Sticky</title>
-    <link rel="stylesheet" href="css/base_settings.css">
-    <link rel="stylesheet" href="css/pageTeam.css">
+    <link rel="stylesheet" href="../css/base_settings.css">
+    <link rel="stylesheet" href="../css/pageTeam.css">
 </head>
 <body>
 <div class="side_bar_container">
     <div class="name">Sticky</div>
     <div class="side_bar">
-        <a href="/" class="bar_element" id="my_task"><img src="img/login.svg" alt="" class="badge"><span class="bar_element_name">Мои задачи</span></a>
-        <a href="/teams" class="bar_element" id="my_teams"><img src="img/team.svg" alt="" class="badge"><span class="bar_element_name">Мои команды</span></a>
-        <div class="bar_element" id="logout"><img src="img/door.svg" alt="" class="badge"><span class="bar_element_name">Выйти из аккаунта</span></div>
+        <a href="/" class="bar_element" id="my_task"><img src="../img/login.svg" alt="" class="badge"><span class="bar_element_name">Мои задачи</span></a>
+        <a href="/teams" class="bar_element" id="my_teams"><img src="../img/team.svg" alt="" class="badge"><span class="bar_element_name">Мои команды</span></a>
+        <div class="bar_element" id="logout"><img src="../img/door.svg" alt="" class="badge"><span class="bar_element_name">Выйти из аккаунта</span></div>
     </div>
 </div>
 <div class="tasks_container">
-    <div class="header_container"> Задачи команды <%=team[0]['name']%>
-        <div class="add_task_ico"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                                           viewBox="0 0 496 496" style="enable-background:new 0 0 496 496;" xml:space="preserve">
+    <div class="header_container"> Задачи команды <span class="name_team"><%=team[0]['name']%></span>
+        <%if (team[0]['adding'] === 'all') {%>
+           <div class="add_task_ico"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                viewBox="0 0 496 496" style="enable-background:new 0 0 496 496;" xml:space="preserve">
 <g>
     <g>
         <path d="M488,240H256V8c0-4.418-3.582-8-8-8s-8,3.582-8,8v232H8c-4.418,0-8,3.582-8,8s3.582,8,8,8h232v232c0,4.418,3.582,8,8,8
 			s8-3.582,8-8V256h232c4.418,0,8-3.582,8-8S492.418,240,488,240z"/>
     </g>
 </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
-                <g>
-                </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
 </svg></div>
+        <%} else if (Number(team[0]['admin']) === Number(userId)) {%>
+            <div class="add_task_ico"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                viewBox="0 0 496 496" style="enable-background:new 0 0 496 496;" xml:space="preserve">
+<g>
+    <g>
+        <path d="M488,240H256V8c0-4.418-3.582-8-8-8s-8,3.582-8,8v232H8c-4.418,0-8,3.582-8,8s3.582,8,8,8h232v232c0,4.418,3.582,8,8,8
+			s8-3.582,8-8V256h232c4.418,0,8-3.582,8-8S492.418,240,488,240z"/>
+    </g>
+</g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+</svg></div>
+        <%}%>
     </div>
     <% for (let i = tasks.length - 1; i > -1; i--) { %>
     <% if (tasks[i]['priority'] === 'high') { %>
@@ -165,6 +207,7 @@
                         <g>
                         </g>
 </svg>
+                    <%if (Number(team[0]['admin']) === Number(userId)) {%>
                     <svg version="1.1" id="cross" class="ico" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                          viewBox="0 0 496.096 496.096" style="enable-background:new 0 0 496.096 496.096;" xml:space="preserve">
 <g>
@@ -206,6 +249,7 @@
                         <g>
                         </g>
 </svg>
+                    <%}%>
                     <svg version="1.1" id="pointer-down" class="ico" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                          viewBox="0 0 490.688 490.688" style="enable-background:new 0 0 490.688 490.688;" xml:space="preserve">
 <path style="fill:#FFC107;" d="M472.328,120.529L245.213,347.665L18.098,120.529c-4.237-4.093-10.99-3.975-15.083,0.262
@@ -260,6 +304,10 @@
             <div class="status">Статус:&nbsp;<span class="status_value"><%=tasks[i]['status']%></span></div>
             <div class="update">Дата обновления:&nbsp;<span class="update_value"><%=tasks[i]['updated']%></span></div>
         </div>
+        <div class="fourth_line hidden">
+            <div class="responsible">Ответственный:&nbsp;<span class="responsible_value"><%=tasks[i]['responsible']%></span></div>
+            <div class="createdBy">Создатель:&nbsp;<span class="createdBy_value"><%=tasks[i]['createdBy']%></span></div>
+        </div>
         <div class="description_container hidden">
             <div class="description_line">
                 <div class="description_header">Описание:</div>
@@ -275,8 +323,8 @@
         <button type="button" class="confirm_deleting_button">Подвердить</button>
     </div>
 </div>
-<script src="plugins/jquery-3.5.1.min.js"></script>
-<script src="plugins/cleave-1.6.0.js"></script>
-<script src="js/pageTeam.js"></script>
+<script src="../plugins/jquery-3.5.1.min.js"></script>
+<script src="../plugins/cleave-1.6.0.js"></script>
+<script src="../js/pageTeam.js"></script>
 </body>
 </html>
