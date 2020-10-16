@@ -1,7 +1,7 @@
 $('#logout').on('click', () => {
     $.ajax({
         type: 'GET',
-        url: 'api/logout',
+        url: '../api/logout',
         success: (data) => {
             if (data.result === true) {
                 window.location.pathname = '/sign_in'
